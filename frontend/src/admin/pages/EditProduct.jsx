@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../../api/axios";
 import { X } from "lucide-react";
 
-const IMAGE_BASE = VITE_IMAGE_BASE_URL;
+const IMAGE_BASE = import.meta.env.VITE_IMAGE_BASE_URL;
 const MAX_IMAGES = 6;
 
 export default function EditProduct() {

@@ -6,7 +6,7 @@ import { placeOrder } from "../api/orderApi";
 
 /* ================= CONFIG ================= */
 const IMAGE_BASE =
-  import.meta.env.VITE_IMAGE_BASE_URL ;
+  import.meta.env.VITE_IMAGE_BASE_URL || "http://localhost:5000";
 
 const getImageUrl = (img) =>
   img ? `${IMAGE_BASE}/${img.replace(/^\//, "")}` : "/no-image.png";

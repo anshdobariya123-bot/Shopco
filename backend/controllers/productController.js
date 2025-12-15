@@ -55,14 +55,32 @@ export const getProduct = async (req, res) => {
   res.json(product);
 };
 
-/* ✅ CATEGORY */
+
+/* ✅ CATEGORY (FIXED & OPTIMIZED) */
 export const listProductsByCategory = async (req, res) => {
-  const { category } = req.params;
+  try {
+    const category = req.params.category?.toLowerCase().trim();
 
-  const products = await Product.find({ category })
-    .sort({ createdAt: -1 });
+    // ✅ Validate category
+    const allowedCategories = ["men", "women", "electronics", "shoes", "kids"];
+    if (!allowedCategories.includes(category)) {
+      return res.status(400).json({
+        message: "Invalid category",
+      });
+    }
 
-  res.json(products);
+    // ✅ Case-insensitive & safe query
+    const products = await Product.find({
+      category: { $regex: `^${category}$`, $options: "i" },
+    }).sort({ createdAt: -1 });
+
+    res.json(products);
+  } catch (error) {
+    console.error("Category fetch error:", error);
+    res.status(500).json({
+      message: "Failed to fetch products",
+    });
+  }
 };
 
 

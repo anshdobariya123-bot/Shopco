@@ -18,16 +18,10 @@ export default function Home() {
     const loadNewArrivals = async () => {
       try {
         setLoading(true);
-
         const res = await getNewArrivals({
           signal: controller.signal,
         });
-
-        const products = Array.isArray(res.data)
-          ? res.data
-          : res.data?.products || [];
-
-        setNewArrivals(products);
+        setNewArrivals(res.data);
       } catch (err) {
         if (err.name !== "CanceledError") {
           console.error(err);
@@ -94,7 +88,7 @@ export default function Home() {
 
             <div className="flex gap-4 pt-4">
               <Link
-                to="/man"
+                to="/men"
                 className="px-7 py-3 rounded-full text-white font-medium
                            bg-linear-to-r from-indigo-500 to-pink-500
                            hover:opacity-90 transition shadow-md"
@@ -103,7 +97,7 @@ export default function Home() {
               </Link>
 
               <Link
-                to="/"
+                to="/contact"
                 className="px-7 py-3 rounded-full font-medium
                            border-2 border-indigo-500 text-indigo-600
                            hover:bg-indigo-50 transition"
@@ -163,10 +157,9 @@ export default function Home() {
         {/* PRODUCTS */}
         {!loading && !error && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-            {Array.isArray(newArrivals) &&
-              newArrivals.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
+            {newArrivals.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
           </div>
         )}
       </section>
