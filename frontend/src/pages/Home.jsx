@@ -18,10 +18,16 @@ export default function Home() {
     const loadNewArrivals = async () => {
       try {
         setLoading(true);
+
         const res = await getNewArrivals({
           signal: controller.signal,
         });
-        setNewArrivals(res.data);
+
+        const products = Array.isArray(res.data)
+          ? res.data
+          : res.data?.products || [];
+
+        setNewArrivals(products);
       } catch (err) {
         if (err.name !== "CanceledError") {
           console.error(err);
@@ -157,9 +163,10 @@ export default function Home() {
         {/* PRODUCTS */}
         {!loading && !error && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-            {newArrivals.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
+            {Array.isArray(newArrivals) &&
+              newArrivals.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
           </div>
         )}
       </section>
