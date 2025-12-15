@@ -8,7 +8,9 @@ const IMAGE_BASE =
 
 /* ================= HELPERS ================= */
 const getImageUrl = (img) =>
-  img ? `${IMAGE_BASE}/${img.replace(/^\//, "")}` : "/no-image.png";
+  img
+    ? `${IMAGE_BASE}/uploads/${img.replace(/^\//, "")}`
+    : "/no-image.png";
 
 /* ================= COMPONENT ================= */
 const ProductCard = ({ product }) => {
