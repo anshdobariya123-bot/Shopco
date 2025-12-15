@@ -24,7 +24,7 @@ export default function Sidebar({ open, setOpen }) {
       {/* SIDEBAR */}
       <aside
         className={`
-          fixed md:static z-50
+          fixed md:fixed z-50
           top-0 left-0 h-full w-64
           bg-white border-r shadow-sm
           px-6 py-6

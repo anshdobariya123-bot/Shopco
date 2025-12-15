@@ -42,55 +42,48 @@ const UserDetails = lazy(() => import("./admin/pages/UserDetails"));
 export default function App() {
   return (
     <Suspense fallback={<PageLoader />}>
-      <Routes>
+  <Routes>
 
-        {/* ================= AUTH ================= */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+    {/* ================= AUTH ================= */}
+    <Route path="/login" element={<Login />} />
+    <Route path="/signup" element={<Signup />} />
 
-        {/* ================= MAIN WEBSITE ================= */}
-        <Route element={<MainLayout />}>
-          {/* PUBLIC */}
-          <Route index element={<Home />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="category/:category" element={<CategoryPage />} />
-          <Route path="product/:id" element={<ProductDetail />} />
-          <Route path="search" element={<SearchPage />} />
+    {/* ================= MAIN WEBSITE ================= */}
+    <Route path="/" element={<MainLayout />}>
+      <Route index element={<Home />} />
+      <Route path="shop" element={<Shop />} />
+      <Route path="category/:category" element={<CategoryPage />} />
+      <Route path="product/:id" element={<ProductDetail />} />
+      <Route path="search" element={<SearchPage />} />
 
-          {/* 🔒 PROTECTED USER ROUTES */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="cart" element={<Cart />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="my-orders" element={<MyOrders />} />
-            <Route path="order/:id" element={<OrderDetails />} />
-            <Route path="add-address" element={<AddEditAddress />} />
-            <Route path="edit-address/:id" element={<AddEditAddress />} />
-          </Route>
-        </Route>
+      <Route element={<ProtectedRoute />}>
+        <Route path="cart" element={<Cart />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="my-orders" element={<MyOrders />} />
+        <Route path="order/:id" element={<OrderDetails />} />
+        <Route path="add-address" element={<AddEditAddress />} />
+        <Route path="edit-address/:id" element={<AddEditAddress />} />
+      </Route>
+    </Route>
 
-        {/* ================= ADMIN PANEL ================= */}
-        <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <AdminLayout />
-            </AdminRoute>
-          }
-        >
-          <Route index element={<Dashboard />} />
-          <Route path="products" element={<Products />} />
-          <Route path="products/add" element={<AddProduct />} />
-          <Route path="products/edit/:id" element={<EditProduct />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="orders/:id" element={<AdminOrderDetails />} />
-          <Route path="users" element={<Users />} />
-          <Route path="users/:id" element={<UserDetails />} />
-        </Route>
+    {/* ================= ADMIN PANEL ================= */}
+    <Route element={<AdminRoute />}>
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="products" element={<Products />} />
+        <Route path="products/add" element={<AddProduct />} />
+        <Route path="products/edit/:id" element={<EditProduct />} />
+        <Route path="orders" element={<Orders />} />
+        <Route path="orders/:id" element={<AdminOrderDetails />} />
+        <Route path="users" element={<Users />} />
+        <Route path="users/:id" element={<UserDetails />} />
+      </Route>
+    </Route>
 
-        {/* ================= 404 ================= */}
-        <Route path="*" element={<NotFound />} />
+    {/* ================= 404 ================= */}
+    <Route path="*" element={<NotFound />} />
 
-      </Routes>
-    </Suspense>
+  </Routes>
+</Suspense>
   );
 }
