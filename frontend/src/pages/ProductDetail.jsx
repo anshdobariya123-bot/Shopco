@@ -4,7 +4,7 @@ import api from "../api/axios";
 import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
 
-const IMAGE_BASE = "http://localhost:5000";
+const IMAGE_BASE = VITE_IMAGE_BASE_URL;
 
 /* ✅ SAFE IMAGE HELPER */
 const getImageUrl = (img) =>

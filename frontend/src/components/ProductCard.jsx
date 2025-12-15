@@ -4,7 +4,7 @@ import { FiHeart } from "react-icons/fi";
 
 /* ================= CONFIG ================= */
 const IMAGE_BASE =
-  import.meta.env.VITE_IMAGE_BASE_URL || "http://localhost:5000";
+  import.meta.env.VITE_IMAGE_BASE_URL ;
 
 /* ================= HELPERS ================= */
 const getImageUrl = (img) =>

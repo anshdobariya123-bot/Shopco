@@ -88,7 +88,7 @@ export default function Home() {
 
             <div className="flex gap-4 pt-4">
               <Link
-                to="/shop"
+                to="/man"
                 className="px-7 py-3 rounded-full text-white font-medium
                            bg-linear-to-r from-indigo-500 to-pink-500
                            hover:opacity-90 transition shadow-md"
@@ -97,7 +97,7 @@ export default function Home() {
               </Link>
 
               <Link
-                to="/contact"
+                to="/"
                 className="px-7 py-3 rounded-full font-medium
                            border-2 border-indigo-500 text-indigo-600
                            hover:bg-indigo-50 transition"
